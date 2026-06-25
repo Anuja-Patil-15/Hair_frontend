@@ -6,7 +6,7 @@ const shopLinks = [
   { label: 'HD Lace', href: '#' },
   { label: 'Order a Custom Unit', href: '#' },
   { label: 'Ready to Ship Units', href: '#' },
-  { label: 'FAQs', href: 'faq' },
+  { label: 'FAQs', href: '/faq' },
 ];
 
 export default function Navbar() {
@@ -14,6 +14,28 @@ export default function Navbar() {
   const [shopOpen, setShopOpen] = useState(false);
   const dropdownRef = useRef(null);
   const timeoutRef = useRef(null);
+
+  // --- FIX: Listen for URL hash changes on page load or redirect ---
+  useEffect(() => {
+    const handleHashScroll = () => {
+      if (window.location.hash === '#quiz') {
+        // Short timeout ensures the DOM element exists before scrolling
+        setTimeout(() => {
+          const element = document.getElementById('quiz');
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100); 
+      }
+    };
+
+    // Run once on mount (handles redirect landing)
+    handleHashScroll();
+
+    // Also listen to any subsequent hash changes
+    window.addEventListener('hashchange', handleHashScroll);
+    return () => window.removeEventListener('hashchange', handleHashScroll);
+  }, []);
 
   // Close mobile menu on resize
   useEffect(() => {
@@ -41,10 +63,15 @@ export default function Navbar() {
     timeoutRef.current = setTimeout(() => setShopOpen(false), 150);
   };
 
-  const scrollToQuiz = (e) => {
-    e.preventDefault();
+  const handleQuizClick = (e) => {
     setOpen(false);
-    document.getElementById('quiz')?.scrollIntoView({ behavior: 'smooth' });
+    
+    // If already on the home page, handle scroll immediately
+    if (window.location.pathname === '/') {
+      e.preventDefault();
+      document.getElementById('quiz')?.scrollIntoView({ behavior: 'smooth' });
+    }
+    // If on another page, let the standard link navigation take over to /#quiz
   };
 
   return (
@@ -102,8 +129,8 @@ export default function Navbar() {
           </div>
 
           <a
-            href="/StyleQuiz"
-            onClick={scrollToQuiz}
+            href="/#quiz"
+            onClick={handleQuizClick}
             className="hover:text-coral transition-colors font-medium"
           >
             Style Quiz
@@ -143,8 +170,8 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#quiz"
-            onClick={scrollToQuiz}
+            href="/#quiz"
+            onClick={handleQuizClick}
             className="mt-2 py-2 text-sm text-cream/90 hover:text-coral transition-colors border-t border-cream/10"
           >
             Style Quiz
