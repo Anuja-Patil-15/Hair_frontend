@@ -34,7 +34,7 @@ export default function Product() {
 
   return (
     <div className="min-h-screen bg-white font-sans relative">
-      <Navbar />
+      {/* <Navbar /> */}
 
       <main className="mx-auto max-w-[1440px] px-8 md:px-16 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
@@ -201,7 +201,7 @@ export default function Product() {
         </div>
       </main>
 
-      <Footer />
+      {/* <Footer /> */}
 
       {/* SIZE GUIDE OVERLAY MODAL */}
       {sizeGuideOpen && (
