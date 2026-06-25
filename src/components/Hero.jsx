@@ -11,7 +11,7 @@ export default function Hero() {
           Raw, Unprocessed Indian Hair Extensions &amp; Custom Units
         </p>
 
-        <h1 className="mt-4 text-5xl font-light tracking-[0.25em] text-ink md:text-3xl">
+        <h1 className="mt-4 text-7xl font-light tracking-[0.25em] text-ink md:text-5xl">
           LETH<span className="text-coral">A</span>L UNITS
         </h1>
 

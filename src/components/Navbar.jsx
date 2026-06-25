@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronDown, ShoppingBag } from 'lucide-react';
 
 const shopLinks = [
-  { label: 'Raw Indian Bundles', href: '#texture' },
+  { label: 'Raw Indian Bundles', href: '/products/illusion-lace-wig' },
   { label: 'HD Lace', href: '#' },
   { label: 'Order a Custom Unit', href: '#' },
   { label: 'Ready to Ship Units', href: '#' },
-  { label: 'FAQs', href: '#faqs' },
+  { label: 'FAQs', href: 'faq' },
 ];
 
 export default function Navbar() {
@@ -102,7 +102,7 @@ export default function Navbar() {
           </div>
 
           <a
-            href="#quiz"
+            href="/StyleQuiz"
             onClick={scrollToQuiz}
             className="hover:text-coral transition-colors font-medium"
           >
